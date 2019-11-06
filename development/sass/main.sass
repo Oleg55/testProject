@@ -1,0 +1,328 @@
+$TEXT-COLOR: #232323
+$WHITE: #FFFFFF
+$YELLOW: #FED112
+$GRAY: #3F4E5D
+$GRAY-DARK: #364555
+$GRAY-LIGHT: #5C6875
+	
+@font-face
+	font-family: 'Roboto'
+	src: url('fonts/Roboto-Regular.ttf') format('true-type')
+	font-weight: normal
+	font-style: normal
+@font-face
+	font-family: 'Roboto'
+	src: url('fonts/Roboto-Medium.ttf') format('true-type')
+	font-weight: 500
+	font-style: normal
+@font-face
+	font-family: 'Roboto'
+	src: url('fonts/Roboto-Bold.ttf') format('true-type')
+	font-weight: 700
+	font-style: normal
+@font-face
+	font-family: 'Montserrat'
+	src: url('fonts/Montserrat-Regular') format('true-type')
+	font-weight: 400
+	font-style: normal
+@font-face
+	font-family: 'Montserrat'
+	src: url('fonts/Montserrat-SemiBold') format('true-type')
+	font-weight: 600
+	font-style: normal
+@font-face
+	font-family: 'Montserrat'
+	src: url('fonts/Montserrat-Bold') format('true-type')
+	font-weight: 700
+	font-style: normal
+    
+*
+	font-family: 'Roboto', sans-serif 
+	color: $TEXT-COLOR
+	padding: 0
+	margin: 0
+	scrollbar-width: thin // Remove scrollbar in Firefox
+
+// Add this to block with scroll (Work only on iOS devices)
+    // -webkit-overflow-scrolling: touch
+
+html
+	overflow: scroll
+	overflow-x: hidden
+
+body
+	-webkit-text-size-adjust: none
+
+::-webkit-scrollbar // Remove scrollbar in Chrome and Safari
+	width: 0
+	background: transparent
+
+.container
+	width: 1540px
+	margin: 0 auto
+
+.clearfix
+	clear: both
+
+.content p
+.content a
+.content ul
+
+h1,h2,h3,h4,h5,h6
+	
+h1
+	
+h2
+
+h3
+
+h4
+
+h5
+
+h6
+
+.header
+	&_top
+		padding: 15px 0
+		display: grid
+		grid-template-columns: 1.4fr 0.7fr 0.7fr 1fr 1.1fr 1.8fr
+		grid-column-gap: 10px
+		align-items: center
+	&_logo
+		display: flex
+		align-items: center
+		&-img
+			margin-right: 10px
+		&-description
+			font-size: 14px
+			font-weight: 700
+			line-height: 20px
+			span
+				text-transform: uppercase
+	&_phone
+		&-link
+			display: block
+			font-size: 14px
+			font-weight: 700
+			line-height: 20px
+			text-decoration: none
+			span
+				font-weight: 400
+		&-messengers
+			a
+				display: inline-block
+				margin-right: 5px
+				text-decoration: none
+				img
+					width: 100%
+					height: 100%
+					object-fit: contain
+	&_worktime
+		p
+			font-size: 14px
+			font-weight: 500
+			line-height: 20px
+	&_address
+		font-size: 14px
+		line-height: 20px
+		img
+			margin-left: 5px
+			vertical-align: middle
+	&_menu
+		display: flex
+		justify-content: space-between
+		align-items: center
+		&-item
+			font-size: 16px
+			font-weight: 500
+			line-height: 20px
+			text-decoration: none
+			&-parent
+				display: flex
+				align-items: center
+				position: relative
+				img
+					margin-left: 10px
+			&:hover .header_submenu
+				opacity: 1
+				z-index: 0
+				visibility: visible
+	&_submenu
+		box-shadow: 0 20px 20px rgba(0,0,0,0.1)
+		background: $WHITE
+		padding: 15px 0
+		position: absolute
+		left: 0
+		top: 100%
+		width: 100%
+		z-index: -1
+		opacity: 0
+		visibility: hidden
+		transition: opacity 0.5s ease-in-out
+		&-item
+			display: block
+			font-size: 14px
+			line-height: 35px
+			text-align: center
+			text-decoration: none
+			transition: background 0.5s ease-in-out
+			&:hover
+				background-color: $YELLOW
+	&_bottom
+		background-color: $GRAY
+		&-wrapper
+			height: 50px
+			display: grid
+			grid-template-columns: 1fr 3fr 1.5fr
+	&_catalog
+		position: relative
+		user-select: none
+		cursor: pointer
+		background-color: $GRAY-DARK
+		display: flex
+		justify-content: space-between
+		align-items: center
+		p
+			color: $WHITE
+			margin-right: auto
+			font-family: 'Montserrat', sans-serif
+			font-size: 16px
+			font-weight: 600
+			line-height: 22px
+			text-transform: uppercase
+		&-img
+			margin: 0 10px
+			transition: transform 0.5s ease-in-out
+			transform: rotate(-90deg)
+		.rotated
+			transform: rotate(0deg)
+		&-dropdown
+			display: none
+			position: absolute
+			top: 100%
+			left: 0
+			width: 100%
+			background-color: $WHITE
+			box-shadow: 0 3px 3px rgba(0,0,0,0.1)
+			&-item
+				padding: 10px 0
+				display: flex
+				align-items: center
+				position: relative
+				transition: background 0.5s ease-in-out
+				&:hover
+					background-color: #F0F0F0
+				&:hover .header_catalog-dropdown-child
+					visibility: visible
+					opacity: 1
+			&-arrow
+				position: absolute
+				right: 15px
+				top: calc(50% - 4.5px)
+			&-image
+				margin: 0 20px
+				width: 25px
+				height: 100%
+				object-fit: contain
+			&-title
+				font-size: 13px
+				font-weight: 700
+				text-transform: uppercase
+			&-child
+				opacity: 0
+				visibility: hidden
+				position: absolute
+				top: 0
+				left: 100%
+				width: -webkit-fit-content
+				width: -moz-fit-content
+				min-width: 280px
+				background-color: $WHITE
+				box-shadow: 10px 10px 20px rgba(0,0,0,0.2)
+				transition: opacity 0.5s ease-in-out
+	&_search
+		background-color: $GRAY-LIGHT
+		padding: 10px 25px
+		display: flex
+		justify-content: center
+		align-items: center
+		input
+			-webkit-appearance: none
+			-moz-appearance: none
+			outline: none
+			border: none
+			width: 100%
+			background-color: transparent
+			border-bottom: 1px solid #A0A5AA
+			color: $WHITE
+			font-family: 'Montserrat', sans-serif
+			font-size: 12px
+			line-height: 22px
+			margin-right: 10px
+			&::placeholder
+				text-transform: uppercase
+				color: #A0A5AA
+	&_btns
+		display: flex
+		justify-content: space-around
+		align-items: center
+		&-text
+			margin-top: 5px
+			color: $WHITE
+			font-size: 8px
+			text-align: center
+			transition: color 0.5s ease-in-out
+		svg
+			display: block
+			margin: 0 auto
+			path
+				transition: fill 0.5s ease-in-out
+		&-count
+			position: absolute
+			right: -5px
+			top: -3px
+			width: 18px
+			height: 18px
+			background-color: $YELLOW
+			transition: background 0.5s ease-in-out
+			border-radius: 50%
+			display: flex
+			justify-content: center
+			align-items: center
+			font-size: 9px
+			font-weight: 700
+	&_user,
+	&_favourites,
+	&_compare,
+	&_cart
+		cursor: pointer
+		position: relative
+		&:hover .header_btns-text
+			color: $YELLOW
+		&:hover svg path
+			fill: $YELLOW
+		&:hover .header_btns-count
+			background-color: $WHITE
+
+@media screen and (max-width: 1600px)
+	.container
+		width: 1366px
+@media screen and (max-width: 1440px)
+	.container
+		width: 1200px
+@media screen and (max-width: 1200px)
+    .container
+        width: 90%
+@media screen and (max-width: 1000px)
+    .container
+        width: 90%
+@media screen and (max-width: 768px)
+    .container
+        width: 90%
+@media screen and (max-width: 425px)
+    .container
+        width: 90%
+@media screen and (max-width: 325px)
+    .container
+        width: 90%
