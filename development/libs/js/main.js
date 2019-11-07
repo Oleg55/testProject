@@ -46,3 +46,26 @@ $('.brands-slider').slick({
         }
     ]
 });
+
+$('.products_item-color div').click(function () {
+	$(this).addClass('selected').siblings().removeClass('selected')
+})
+
+$('.slide-text-btn').click(function(){
+	$('.slide-text').slideToggle();
+	$(this).remove();
+	$('slide-text-wrapper p').css('width','100%')
+})
+
+$(function() {
+ 	$(window).scroll(function() {
+		if($(this).scrollTop() != 0) {
+			$('#toTop').fadeIn();
+		} else {
+			$('#toTop').fadeOut();
+		}
+	});
+	$('#toTop').click(function() {
+		$('body,html').animate({scrollTop:0},800);
+	});
+});

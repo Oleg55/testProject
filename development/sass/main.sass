@@ -4,6 +4,7 @@ $YELLOW: #FED112
 $GRAY: #3F4E5D
 $GRAY-DARK: #364555
 $GRAY-LIGHT: #5C6875
+$FOOTER-BG: #2C3946
 	
 @font-face
 	font-family: 'Roboto'
@@ -69,11 +70,15 @@ body
 .content ul
 
 h1,h2,h3,h4,h5,h6
-	
+	color: $GRAY-LIGHT
 h1
 	
 h2
-
+	font-size: 25px
+	line-height: 33px
+	font-weight: 400
+	margin-top: 20px
+	margin-bottom: 30px
 h3
 
 h4
@@ -308,6 +313,7 @@ h6
 
 .content-background
 	background-color: #FAFAFA
+	padding-bottom: 40px
 
 .slider-main
 	width: calc(100% - 300px)
@@ -418,7 +424,7 @@ h6
 		box-shadow: 0 0 6px rgba(0,0,0,0.3)
 
 .products_header
-	margin: 15px 0
+	margin: 30px 0
 	display: flex
 	justify-content: space-between
 	align-items: center
@@ -430,9 +436,103 @@ h6
 .products
 	display: grid
 	grid-template-columns: repeat(5, 1fr)
+	grid-gap: 5px
 	&_item
 		background-color: $WHITE
 		padding: 10px
+		&-info
+			position: absolute
+			left: 0
+			top: 0
+			width: 100%
+			height: 100%
+			&-block
+				cursor: pointer
+				user-select: none
+				padding: 5px
+				display: flex
+				align-items: center
+				border-radius: 10px
+				border-bottom-right-radius: 0
+				border: 1px solid #E0E0E0
+				background-color: $WHITE
+				margin-bottom: 10px
+				width: 65px
+				height: 30px
+				img
+					margin-right: 5px
+				p
+					font-size: 9px
+					font-weight: 700
+					span
+						font-size: 11px
+				&-hover
+					opacity: 0
+					visibility: hidden
+					transition: opacity 0.3s ease-in-out
+					box-shadow: 0 0 6px rgba(0,0,0,0.2)
+					width: calc(100% - 30px)
+					height: auto
+					padding: 10px
+					position: absolute
+					left: 5px
+					top: 45px
+					border: 1px solid $YELLOW
+					background-color: $WHITE
+					z-index: 1
+					b
+						font-size: 14px
+						line-height: 18px
+						font-weight: 700
+						margin-bottom: 10px
+					p
+						font-size: 12px
+						line-height: 18px
+					a
+						font-size: 12px
+						line-height: 18px
+				&:hover .products_item-info-block-hover
+					opacity: 1
+					visibility: visible
+		&-btns
+			position: absolute
+			top: 0
+			right: 0
+			display: flex
+			flex-direction: column
+			z-index: 1
+			svg
+				margin: 5px 0
+				path
+					transition: fill 0.5s ease-in-out
+				&:hover
+					path
+						fill: $YELLOW
+		&-color
+			position: absolute
+			bottom: 0
+			right: 0
+			z-index: 1
+			div
+				cursor: pointer
+				margin: 10px 0
+				width: 14px
+				height: 14px
+				box-sizing: border-box
+				transition: border 0.5s ease-in-out, border-radius 0.5s ease-in-out, width 0.5s ease-in-out, height 0.5s ease-in-out
+			&-black
+				background-color: #262523
+			&-yellow
+				background-color: $YELLOW
+			&-orange
+				background-color: #FE5212
+			&-blue
+				background-color: #12CDFE
+			.selected
+				border: 2px solid $YELLOW
+				border-radius: 50%
+				width: 14px
+				height: 14px
 		&-img
 			position: relative
 		&-code
@@ -454,9 +554,9 @@ h6
 				font-size: 12px
 				font-weight: 300
 				line-height: 20px
-				color: #5C6875
+				color: $GRAY-LIGHT
 				span
-					color: #5C6875
+					color: $GRAY-LIGHT
 					font-size: 12px
 					font-weight: 700
 		&-price
@@ -490,24 +590,276 @@ h6
 			&-wrapper
 				width: 50%
 
+.main-articles
+	margin: 50px 0
+	display: grid
+	grid-template-columns: repeat(5, 1fr)
+	grid-gap: 5px
+	&_item
+		text-decoration: none
+		img
+			width: 100%
+			max-height: 200px
+			object-fit: contain
+		&-link
+			font-size: 13px
+			line-height: 17px
+			margin-top: 15px
+		p
+			font-size: 16px
+			line-height: 24px
+			position: relative
+			padding-left: 35px
+			&::before
+				content: ''
+				position: absolute
+				left: 25px
+				bottom: 0px
+				width: 2px
+				height: 90px
+				background-color: $YELLOW
+
+.slide-text
+	color: $GRAY-LIGHT
+	font-size: 14px
+	line-height: 25px
+	margin: 10px 0
+	display: none
+	&-wrapper
+		position: relative
+		p
+			color: $GRAY-LIGHT
+			font-size: 14px
+			line-height: 25px
+			width: 95%
+	&-btn
+		position: absolute
+		top: 0
+		right: 0
+		display: flex
+		flex-direction: column
+		align-items: center
+		cursor: pointer
+		user-select: none
+		p
+			font-size: 11px
+			line-height: 14px
+			margin-top: 10px
+			width: 100%
+			text-align: center
+
+.footer
+	background-color: $FOOTER-BG
+	&_top
+		padding: 40px 0
+		display: grid
+		grid-template-columns: 1fr 1fr 1fr 1fr 1.5fr
+		grid-gap: 20px
+		&-title
+			color: $GRAY-LIGHT
+			font-size: 18px
+			line-height: 30px
+			font-weight: 700
+			text-transform: uppercase
+			margin-bottom: 20px
+		&-link
+			display: block
+			font-size: 13px
+			line-height: 30px
+			font-weight: 500
+			color: #B9C6D2
+			text-decoration: none
+			transition: color 0.5s ease-in-out
+			&:hover
+				color: $YELLOW
+		&-phone
+			font-size: 14px
+			line-height: 30px
+			font-weight: 700
+			color: #B9C6D2
+			display: block
+			text-decoration: none
+			span
+				font-size: 14px
+				line-height: 30px
+				font-weight: 400
+				color: #B9C6D2
+		&-time
+			font-size: 12px
+			line-height: 22px
+			color: #B9C6D2
+	&_social
+		margin: 20px 0
+		display: flex
+		align-items: center
+		a
+			text-decoration: none
+			margin-right: 20px
+			svg
+				path
+				 	transition: fill 0.5s ease-in-out
+			&:hover svg path
+				fill: $YELLOW
+	&_center
+		background-color: $GRAY-DARK
+		&-wrapper
+			padding: 15px 0
+			display: flex
+			justify-content: space-between
+		&-block
+			display: flex
+			align-items: center
+			p
+				text-transform: uppercase
+				margin-right: 10px
+				font-size: 12px
+				font-weight: 700
+				color: #B9C6D2
+			img
+				margin: 0 10px
+	&_copyright
+		&-wrapper
+			padding: 20px 0
+			display: flex
+			justify-content: space-between
+			align-items: center
+			p
+				color: $GRAY-LIGHT
+				font-size: 12px
+		&-dev
+			display: flex
+			p
+				margin-right: 10px
+			img
+				object-fit: contain
+
+#toTop
+	z-index: 1
+	width: 35px
+	height: 35px
+	border-radius: 50%
+	background: $YELLOW
+	padding: 10px
+	position: fixed
+	bottom: 30px
+	right: 30px
+	cursor: pointer
+	display: none
+	img
+		width: 100%
+		height: 100%
+		object-fit: contain
+
 @media screen and (max-width: 1600px)
 	.container
 		width: 1366px
 @media screen and (max-width: 1440px)
 	.container
 		width: 1200px
+	.products
+		grid-template-columns: repeat(4, 1fr)
+@media screen and (max-width: 1260px)
+	.header_logo-description
+		display: none
+	.header_top
+		grid-template-columns: 0.6fr 0.8fr 0.8fr 1fr 1.2fr 2fr
+	.header_bottom-wrapper
+		grid-template-columns: 1.1fr 2.3fr 1.1fr
+	.advantages
+		width: 100%
 @media screen and (max-width: 1200px)
-    .container
-        width: 90%
-@media screen and (max-width: 1000px)
-    .container
-        width: 90%
+	.container
+    	width: 90%
+	.products
+		grid-template-columns: repeat(3, 1fr)
+@media screen and (max-width: 1060px)
+	.slider-main
+		width: 100%
+	.header_menu
+		display: none
+	.header_top
+		grid-template-columns: 1fr 1fr 1fr 1fr 1fr
+	.header_bottom-wrapper
+		grid-template-columns: 1.1fr 1.5fr 1.1fr
+	.footer_top-block:last-child
+		display: none
+	.footer_top
+		grid-template-columns: 1fr 1fr 1fr 1fr
+	.main-articles
+		grid-gap: 20px
+		grid-template-columns: repeat(4, 1fr)
 @media screen and (max-width: 768px)
-    .container
-        width: 90%
+	.products
+		grid-template-columns: repeat(2, 1fr)
+	.advantages
+		justify-content: center
+		flex-wrap: wrap
+		&_item
+			width: 33%
+			margin-bottom: 15px
+	.main-articles
+		grid-template-columns: repeat(3, 1fr)
+	.slide-text-btn
+		top: 75%
+	.header_top
+		grid-template-columns: 0.5fr 1fr 1fr 1.5fr 1fr
+	.header_search
+		display: none
+	.header_bottom-wrapper
+		grid-template-columns: 1fr 1fr
+	.slide-text-btn
+		position: relative
+		margin-top: 20px
 @media screen and (max-width: 425px)
-    .container
-        width: 90%
+	.header_top
+		display: flex
+		flex-wrap: wrap
+		justify-content: space-between
+		align-items: center
+	.header_address,
+	.header_worktime
+		margin-top: 20px
+	.header_catalog
+		display: none
+	.header_bottom-wrapper
+		grid-template-columns: 1fr
+	.advantages
+		&_item
+			box-sizing: border-box
+			width: 50%
+			padding-right: 10px
+	.products_header
+		flex-direction: column
+	.products
+		grid-template-columns: 1fr
+		grid-row-gap: 20px
+	.main-articles
+		grid-template-columns: 1fr
+	.footer_top
+		grid-template-columns: 1fr
+		justify-items: center
+		text-align: center
+	.footer_center-wrapper
+		flex-direction: column
+	.footer_center-block
+		flex-direction: column
+		p, img
+			margin-bottom: 15px
+@media screen and (max-width: 400px)
+	.header_phone
+		width: 50%
+		margin-top: 20px
+	.header_address
+		width: 100%
+		text-align: center
 @media screen and (max-width: 325px)
-    .container
-        width: 90%
+	.header_worktime
+		width: 50%
+		p
+			font-size: 12px
+	.advantages_item
+		width: 100%
+	.footer_copyright-wrapper
+		flex-direction: column
+	.footer_copyright-dev
+		margin-top: 15px
