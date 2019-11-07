@@ -1,5 +1,5 @@
 if (location.pathname == '/' || location.pathname == '/index.html') {
-	$('.header_catalog-dropdown').fadeIn();
+	$('.header_catalog-dropdown').addClass('show');
 }
 
 $('.header_catalog').click(function(){

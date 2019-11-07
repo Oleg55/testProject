@@ -203,6 +203,7 @@ h6
 		.rotated
 			transform: rotate(0deg)
 		&-dropdown
+			z-index: 1
 			display: none
 			position: absolute
 			top: 100%
@@ -247,6 +248,8 @@ h6
 				background-color: $WHITE
 				box-shadow: 10px 10px 20px rgba(0,0,0,0.2)
 				transition: opacity 0.5s ease-in-out
+		.show
+			display: block
 	&_search
 		background-color: $GRAY-LIGHT
 		padding: 10px 25px
@@ -773,6 +776,8 @@ h6
 	.products
 		grid-template-columns: repeat(3, 1fr)
 @media screen and (max-width: 1060px)
+	.header_catalog .show
+		display: none
 	.slider-main
 		width: 100%
 	.header_menu
