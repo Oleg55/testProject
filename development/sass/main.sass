@@ -53,6 +53,7 @@ html
 
 body
 	-webkit-text-size-adjust: none
+	overflow: hidden
 
 ::-webkit-scrollbar // Remove scrollbar in Chrome and Safari
 	width: 0
@@ -185,9 +186,11 @@ h6
 		user-select: none
 		cursor: pointer
 		background-color: $GRAY-DARK
-		display: flex
-		justify-content: space-between
-		align-items: center
+		&-btn
+			height: 100%
+			display: flex
+			justify-content: space-between
+			align-items: center
 		p
 			color: $WHITE
 			margin-right: auto
@@ -450,18 +453,25 @@ h6
 			width: 100%
 			height: 100%
 			&-block
-				cursor: pointer
-				user-select: none
-				padding: 5px
-				display: flex
-				align-items: center
-				border-radius: 10px
-				border-bottom-right-radius: 0
-				border: 1px solid #E0E0E0
-				background-color: $WHITE
-				margin-bottom: 10px
-				width: 65px
-				height: 30px
+				background: transparent
+				position: relative
+				&-wrapper
+					cursor: pointer
+					user-select: none
+					padding: 5px
+					display: flex
+					align-items: center
+					border-radius: 10px
+					border-bottom-right-radius: 0
+					border: 1px solid #E0E0E0
+					background-color: $WHITE
+					margin-bottom: 10px
+					width: 65px
+					height: 30px
+				&-arrow
+					position: absolute
+					left: -5px
+					top: -18px
 				img
 					margin-right: 5px
 				p
@@ -593,12 +603,10 @@ h6
 			&-wrapper
 				width: 50%
 
-.main-articles
+.main-articles-slider
 	margin: 50px 0
-	display: grid
-	grid-template-columns: repeat(5, 1fr)
-	grid-gap: 5px
 	&_item
+		margin: 0 15px
 		text-decoration: none
 		img
 			width: 100%
@@ -753,6 +761,17 @@ h6
 		height: 100%
 		object-fit: contain
 
+.header_mobile
+	display: none
+
+.category-mobile-slider,
+.mobile-login-block,
+.main-articles_item-link-mobile
+	display: none
+
+.footer_mobile
+	display: none
+
 @media screen and (max-width: 1600px)
 	.container
 		width: 1366px
@@ -790,9 +809,6 @@ h6
 		display: none
 	.footer_top
 		grid-template-columns: 1fr 1fr 1fr 1fr
-	.main-articles
-		grid-gap: 20px
-		grid-template-columns: repeat(4, 1fr)
 @media screen and (max-width: 768px)
 	.products
 		grid-template-columns: repeat(2, 1fr)
@@ -808,14 +824,189 @@ h6
 		top: 75%
 	.header_top
 		grid-template-columns: 0.5fr 1fr 1fr 1.5fr 1fr
-	.header_search
-		display: none
 	.header_bottom-wrapper
 		grid-template-columns: 1fr 1fr
 	.slide-text-btn
 		position: relative
 		margin-top: 20px
+	.header_mobile
+		height: 55px
+		display: grid
+		grid-template-columns: 1fr 3fr 1fr
+		background-color: $GRAY-DARK
+		width: 100%
+		position: fixed
+		left: 0
+		top: 0
+		z-index: 2
+	.header_mobile-search,
+	.header_mobile-cart
+		height: 55px
+		padding: 0
+	.menu-opened
+		grid-template-columns: 1fr 4fr
+	.content-background
+		margin-top: 65px
+	.header_bottom-wrapper
+		.header_search
+			display: none
+	.header_mobile-cart
+		display: flex
+		justify-content: center
+		align-items: center
+	.dn
+		display: none
+	.header_btns-text
+		margin-top: 0
+	.header_mobile-btn
+		display: flex
+		justify-content: center
+		align-items: center
+		height: 55px
+		&-wrapper
+			display: flex
+			flex-direction: column
+			justify-content: center
+			position: relative
+			width: 18px
+		span
+			margin: 2px 0
+			height: 3px
+			background-color: $WHITE
+			transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out
+			&:nth-child(1)
+				width: 18px
+			&:nth-child(2)
+				width: 15px
+			&:nth-child(3)
+				width: 12px
+		.opened
+			span
+				margin: 0
+				width: 18px
+				position: absolute
+				top: 0
+				left: 0
+			span:nth-child(1)
+				transform: rotate(45deg)
+			span:nth-child(3)
+				transform: rotate(-45deg)
+			span:nth-child(2)
+				opacity: 0
+	.header_mobile-search
+		.header_search
+			height: 100%
+			box-sizing: border-box
+	.header
+		display: none
+	.header_mobile-menu
+		width: 100%
+		height: calc(100vh - 55px)
+		position: absolute
+		top: 55px
+		left: -100%
+		background-color: $WHITE
+		transition: left 0.5s ease-in-out
+		z-index: 2
+		&-wrapper
+			overflow-x: scroll
+			position: relative
+			width: 100%
+			height: calc(100vh - 55px)
+		&-list
+			background-color: $WHITE
+			padding: 20px
+			li
+				list-style: none
+			&-item
+				display: flex
+				justify-content: space-between
+				align-items: center
+				font-size: 14px
+				line-height: 35px
+				text-decoration: none
+				img
+					transition: transform 0.5s ease-in-out
+				&-child
+					display: none
+					margin-left: 20px
+	.opened
+		left: 0
+	.header_mobile-menu-top
+		background-color: $GRAY-DARK
+		padding: 20px
+		.header_mobile-logo
+			display: flex
+			align-items: center
+			margin-bottom: 20px
+			.header_mobile-description
+				margin-left: 20px
+				font-size: 14px
+				font-weight: 700
+				line-height: 20px
+				color: $WHITE
+				span
+					font-size: 14px
+					font-weight: 700
+					line-height: 20px
+					color: $WHITE	
+		.header_mobile-login
+			.header_user
+				display: flex
+				align-items: center
+				svg
+					margin-right: 20px
+				.header_btns-text
+					font-size: 14px
+					font-weight: 500
+					line-height: 20px
+					span
+						font-size: 14px
+						font-weight: 500
+						line-height: 20px
+						color: inherit
+						margin: 0 10px
+	.header_mobile-main
+		background: $GRAY-DARK
+		padding: 20px
+		&-item
+			padding: 10px 0
+			.header_cart,
+			.header_compare,
+			.header_favourites
+				display: flex
+				align-items: center
+				.header_btns-text
+					font-size: 14px
+					line-height: 20px
+					margin-left: 20px
+				.header_btns-count
+					left: 15px
+					top: -10px
+	.header_mobile-phone
+		padding: 10px 20px
+		a
+			display: block
+			font-size: 14px
+			line-height: 30px
+			text-decoration: none
+	.header_mobile-social
+		padding: 10px 20px
+		background-color: $GRAY-DARK
+		.footer_social
+			margin: 0
+	.main-articles-slider
+		.dn
+			display: none
+	.main-articles_item-link-mobile
+		display: block
+		font-size: 13px
+		line-height: 17px
+		text-align: center
+		text-decoration: underline
 @media screen and (max-width: 425px)
+	.mobile-login-block
+		display: block
 	.header_top
 		display: flex
 		flex-wrap: wrap
@@ -830,16 +1021,20 @@ h6
 		grid-template-columns: 1fr
 	.advantages
 		&_item
+			flex-direction: column
+			align-items: center
 			box-sizing: border-box
 			width: 50%
 			padding-right: 10px
-	.products_header
-		flex-direction: column
+		img
+			margin-right: 0
+		&-text
+			text-align: center
+			font-size: 9px
+			font-weight: 700
 	.products
 		grid-template-columns: 1fr
 		grid-row-gap: 20px
-	.main-articles
-		grid-template-columns: 1fr
 	.footer_top
 		grid-template-columns: 1fr
 		justify-items: center
@@ -850,6 +1045,117 @@ h6
 		flex-direction: column
 		p, img
 			margin-bottom: 15px
+	.products_header-link
+		overflow: hidden
+		white-space: nowrap
+		width: 22px
+	.category-mobile-slider
+		display: block
+		height: 120px
+		margin-left: -160px
+		margin-bottom: 30px
+		.slick-list,
+		.slick-track
+			height: 100%
+		.slick-list
+			padding-left: 0 !important
+		a
+			margin-top: 10px
+			height: 55%
+			box-shadow: 0 0 5px rgba(0,0,0,0.2)
+			display: flex !important
+			flex-direction: column
+			align-items: center
+			justify-content: center
+			margin-right: 20px
+			border-radius: 10px
+			padding: 20px 30px
+			box-sizing: content-box
+			text-decoration: none
+			span
+				margin-top: 10px
+				text-decoration: none
+				font-size: 10px
+		img
+			object-fit: contain
+	.mobile-login-block
+		padding: 20px
+		box-shadow: 0 0 10px rgba(0,0,0,0.2)
+		p
+			font-size: 12px
+			text-align: center
+		.button
+			width: 70%
+			margin: 20px auto
+			text-decoration: none
+			text-transform: unset
+			font-size: 14px
+			font-weight: 700
+		a
+			font-size: 13px
+			font-weight: 700
+			display: block
+			text-align: center
+			text-decoration: underline dashed
+	.footer
+		display: none
+	.footer_mobile
+		display: block
+	.footer_top-block:last-child
+		display: block
+	.footer_top-phone
+		display: flex
+		justify-content: space-between
+		align-items: center
+	.footer_mobile-top
+		background-color: $GRAY-DARK
+		padding: 20px
+	.footer_mobile
+		.footer_top-block-wrapper
+			display: flex
+			justify-content: space-between
+			align-items: center
+	.footer_phone-btn
+		color: $WHITE
+		padding: 10px 25px
+		text-decoration: none
+		font-size: 14px
+		font-weight: 700
+		border: 1px solid #BDBCC7
+		border-radius: 20px
+		margin: 5px 0
+	.footer_mobile-center
+		background-color: $GRAY
+		display: flex
+		flex-direction: column
+		justify-content: center
+		align-items: center
+		padding: 20px
+		p
+			font-size: 7px
+			font-weight: 700
+			line-height: 13px
+			color: $WHITE
+			text-transform: uppercase
+	.footer_mobile-bottom
+		background-color: $GRAY-DARK
+		padding: 20px
+		display: flex
+		justify-content: center
+		align-items: center
+		img
+			margin: 0 10px
+	.footer_mobile-copyright
+		background-color: $GRAY-DARK
+		padding: 20px
+		p
+			color: $GRAY-LIGHT
+			font-size: 12px
+			line-height: 22px
+		&-wrapper
+			display: flex
+			justify-content: space-between
+			align-items: center
 @media screen and (max-width: 400px)
 	.header_phone
 		width: 50%
