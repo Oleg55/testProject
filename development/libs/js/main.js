@@ -1,4 +1,4 @@
-if (window.location.pathname == '/' || location.pathname == '/index.html') {
+if (window.location.pathname == '/') {
 	$('.header_catalog-dropdown').addClass('show');
 }
 
